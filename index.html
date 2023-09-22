@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+        <figure class="avatar-box">
+          <img src="IMAGES/akshaya.png" alt="Akshaya's profile photo" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Akshaya J">Akshaya J</h1>
+          <p class="title">Student reseracher | AI/ML Developer</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+      </div>
+
+      <div class="sidebar-info_more">
+        <div class="separator"></div>
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+            <div class="icon-box"><ion-icon name="mail-outline"></ion-icon></div>
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+              <a href="mailto:akshayajeyaprakash2003@gmail.com" class="contact-link">akshayajeyaprakash2003@gmail.com</a>
+            </div>
+          </li>
+
+          <li class="contact-item">
+            <div class="icon-box"><ion-icon name="location-outline"></ion-icon></div>
+            <div class="contact-info">
+              <p class="contact-title">College</p>
+              <address>Amrita Vishwa Vidyapeetham, Ettimadai</address>
+            </div>
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+        <ul class="social-list">
+            
+         <li class="social-item">
+            <a href="https://www.linkedin.com/in/akshaya-jeyaprakash-432997238/" class="social-link"><ion-icon name="logo-linkedin"></ion-icon></a>
+         </li>
+            
+         <li class="social-item">
+            <a href="https://github.com/SAIFALISEW1508" class="social-link"><ion-icon name="logo-github"></ion-icon></a>
+         </li>
+
+        </ul>
+      </div>
+    </aside>
+
+
+    <div class="main-content">
+
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item"><button class="navbar-link  active" data-nav-link>Profile</button></li>
+          <li class="navbar-item"><button class="navbar-link" data-nav-link>Education and Experience</button></li>
+          <li class="navbar-item"><button class="navbar-link" data-nav-link>My Projects</button></li>
+          <li class="navbar-item"><button class="navbar-link" data-nav-link>Workshops handled</button></li>
+          <li class="navbar-item"><button class="navbar-link" data-nav-link>Competitions</button></li>
+          <li class="navbar-item"><button class="navbar-link" data-nav-link>Contact</button></li>
+        </ul>
+      </nav>
+
+
+
+      <article class="about  active" data-page="profile">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            I am actively pursuing a role as an AI/ML researcher and developer. I have honed my skills through extensive experience working with Python, MATLAB, and R,. My approach to problem-solving is both collaborative and autonomous, able to thrive in team settings as well as take charge of responsibilities independently.
+          </p>
+
+          <p>
+            Looking forward, I am particularly interested in deepening my knowledge and experience in the fields of Explainable-AI and Transfer learning. My aspiration to pursue a Ph.D. in Computer Vision remains a strong driver of my academic endeavors, fueling my ongoing research efforts in this domain. I am proud to have authored four research publications to date, with additional works currently under review.
+          </p>
+        </section>
+
+
+
+        <section class="service">
+          <h3 class="h3 service-title">My publications</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+              <div class="service-icon-box"><img src="IMAGES/Web1.png" alt="admin icon" width="40"></div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">CONFERENCE </h4>
+                <p class="service-item-text">Implementation of Hack ALU using Quantum Dot Cellular Automata | IEEE Xplore</p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box"><img src="IMAGES/Web2.png" alt="admin icon" width="40"></div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">PRE-PRINT </h4>
+                <p class="service-item-text">Learning (With) Distributed Optimization | RESEARCH GATE</p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box"><img src="IMAGES/Web1.png" alt="admin icon" width="40"></div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title"> JOURNAL </h4>
+                <p class="service-item-text">A comparison between steepest descent and non-linear conjugate gradient algorithms for binding energy minimization of organic molecules | IOP journal of physics: Conference series </p>
+                </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box"><img src="IMAGES/Web3.png" alt="admin icon" width="40"></div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">BOOK CHAPTER </h4>
+                <p class="service-item-text">Going Beyond Traditional Methods: Using LSTM Networks to Predict Rainfall in Kerala | Springer</p>
+              </div>
+            </li>
+
+          </ul>
+
+        </section>
+
+
+        <div class="modal-container" data-modal-container>
+          <div class="overlay" data-overlay></div>
+          <section class="testimonials-modal">
+            <button class="modal-close-btn" data-modal-close-btn><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-img-wrapper"><figure class="modal-avatar-box"></figure></div>
+            <div class="modal-content">
+              <div data-modal-text></div>
+            </div>
+          </section>
+        </div>
+
+      </article>
+
+
+
+      <!-- RESUME -->
+      <article class="resume" data-page="education and experience">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Education</h3>
+          </div>
+          
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Amrita Vishwa Vidyapeetham, Ettimadai</h4>
+              <span>2020 - 2024</span>
+              <p class="timeline-text">B. Tech in CSE-Artificial Intelligence [CGPA: 9.21]</p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Adhyapana school, CBSE, Madurai</h4>
+              <span>2018 - 2020</span>
+              <p class="timeline-text">AISSCE Examination [score: 481/500]</p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Velammal Bodhi Campus, CBSE, Madurai</h4>
+              <span>2016 - 2018</span>
+              <p class="timeline-text">AISSE Examination [score: 457/500]</p>
+            </li>
+
+          </ol>
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box"><ion-icon name="book-outline"></ion-icon></div>
+            <h3 class="h3">Experience</h3>
+          </div>
+          
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Research Intern - Nummero [GINEE]</h4>
+              <span>2021 — Present</span>
+              <p class="timeline-text">I was the first core AI person to join the team of Ginee, hence my job in the first month was pretty wide where I had to research on the scopes of implementation of AI for automating different process and propose the solutions to the CEO. My contributuions during this period are as follows, <br>
+                &emsp; 1. Research about various possibilities of AI automation in CRM <br>
+                &emsp; 2. Research and Identification of the nature of the above possibilities and Data collection
+                
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Python AI/ML developer Intern - Nummero [GINEE]</h4>
+              <span>2021 — Present</span>
+              <p class="timeline-text">In the second phase of my internship my job was to analyse the feasiblity of implementations of the automation ideas I proposed in the first place and provide a cost efficient implementation. During this period of my internship the following are the implementations that I had succesfully completed, <br>
+                &emsp; 1. Content automation <br>
+                &emsp; &emsp; a. Articles and blog generation <br>
+                &emsp; &emsp; b. Facebook new-headlines generation <br>
+                &emsp; &emsp; c. landing-page creation <br>
+                &emsp; &emsp; d. Social media post-caption generation <br>
+                &emsp; 2. Text to Image conversion <br>
+                &emsp; 3. Image and video Background removal <br>
+                &emsp; 4. Content editing and optimization features <br>
+                &emsp; &emsp; a. Article rephrasing <br>
+                &emsp; &emsp; b. Grammar and spelling correction <br>
+                &emsp; &emsp; c. Summary writing <br>
+              </p>
+            </li>
+
+          </ol>
+        </section>
+
+        <section class="skill">
+          <h3 class="h3 skills-title">My skills</h3>
+          <ul class="skills-list content-card">
+
+            <li class="skills-item">
+              <div class="title-wrapper"><h5 class="h5">Python</h5><data value="90">90%</data></div>
+              <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 90%;"></div></div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper"><h5 class="h5">MATLAB Programming</h5><data value="80">80%</data></div>
+              <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 80%;"></div></div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper"><h5 class="h5">Tensorflow framework-Python</h5><data value="85">85%</data></div>
+              <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 85%;"></div></div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper"><h5 class="h5">JAVA</h5><data value="75">75%</data></div>
+              <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 75%;"></div></div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper"><h5 class="h5">HTML CSS</h5><data value="50">50%</data></div>
+              <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 50%;"></div></div>
+            </li>
+
+          </ul>
+        </section>
+
+      </article>
+
+
+      <!-- PORTFOLIO -->
+
+      <article class="portfolio" data-page="my projects">
+
+        <header><h2 class="h2 article-title">My Projects</h2></header>
+        <section class="projects">
+
+          <ul class="filter-list">
+            <li class="filter-item"><button class="active" data-filter-btn>All</button></li>
+            <li class="filter-item"><button data-filter-btn>Core Math</button></li>
+            <li class="filter-item"><button data-filter-btn>Machine Learning</button></li>
+            <li class="filter-item"><button data-filter-btn>Deep Learning</button></li>
+            <li class="filter-item"><button data-filter-btn>Core DSA</button></li>
+            <li class="filter-item"><button data-filter-btn>Hardware</button></li>
+            <li class="filter-item"><button data-filter-btn>Databases</button></li>
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+              <div class="select-value" data-selecct-value>Select category</div>
+              <div class="select-icon"><ion-icon name="chevron-down"></ion-icon></div>
+            </button>
+
+            <ul class="select-list">
+              <li class="select-item"><button data-select-item>All</button></li>
+              <li class="select-item"><button data-select-item>Core Math</button></li>
+              <li class="select-item"><button data-select-item>Machine Learning</button></li>
+              <li class="select-item"><button data-select-item>Deep Learning</button></li>
+              <li class="select-item"><button data-select-item>Core DSA</button></li>
+              <li class="select-item"><button data-select-item>Hardware</button></li>
+              <li class="select-item"><button data-select-item>Databases</button></li>
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+
+            <li class="project-item  active" data-filter-item data-category="deep learning">
+              <a href="###">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/DL.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Interpretation of Neural layers using DMD</h3>
+                    <p2>MARCH 2023</p2> <br><br>
+                    <p1>
+                      We know that DMD is an algorithm which has the peculier ability of capaturing dynamics of a syatem, provided the system parameters are constant. This project uses DMD and XAI techniques to understand the temporal dynamics of neural network weight convergence. It finds that weights converge to specific points on the Argand plane, indicating static behaviors. The project provides a nuanced understanding of the temporal facets of neural network training dynamics and the distinct traits associated with various layer types.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+
+
+          <li class="project-item  active" data-filter-item data-category="deep learning">
+            <a href="###">
+              <div class="project">
+                <figure class="project-img">
+                  <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                  <img src="IMAGES/DL.png" alt="Adder" loading="lazy">
+                </figure>
+                <div class="project-details">
+                  <h3>Neural network for bilingual speech sentiment analysis</h3>
+                  <p2>JANUARY 2023</p2> <br><br>
+                  <p1>
+                    This project investigates the differences between English and German languages in terms of speech emotion recognition. To overcome the challenge of linguistic and cultural differences, we used MFCC features, outperforming the state-of-the-art methods. Our findings highlight the importance of considering language and cultural differences in speech emotion recognition for cross-lingual speech analysis.
+                  </p1>
+                </div>
+              </div>
+            </a>
+        </li>
+
+            <li class="project-item  active" data-filter-item data-category="hardware">
+              <a href="###">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/Hardware.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Neuro-driven wheels</h3>
+                    <p2>AUGUST-DECEMBER 2022</p2> <br><br>
+                    <p1>
+                      This project aims to develop robust and engaging DIY BCI projects for STEM education, empowering and inspiring students to learn about and apply BCI technology. This project intends to bridge the gap between technological advancements and educational resources, facilitating the widespread adoption of BCI technology in STEM education.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+          
+          
+          <li class="project-item  active" data-filter-item data-category="deep learning">
+              <a href="https://github.com/AkshayaJeyaprakash/Distilled-Learning-GAN">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/DL.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Distilled Generative Adversarial Networks with Regularization-Based Loss for Efficient Image Super-Resolution</h3>
+                    <p2>JUNE-JULY 2022</p2> <br><br>
+                    <p1>
+                      This project proposes a novel GAN-based image super-resolution model that outperforms state-of-the-art methods by incorporating distill learning, a refined loss function, and regularization techniques. The proposed model achieves 94% accuracy, surpassing established methodologies, and exhibits accelerated training due to the improved loss function.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+          
+          
+          <li class="project-item  active" data-filter-item data-category="hardware">
+              <a href="###">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/Hardware.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Plant irrigation alarm sytem using Raspberry-pi, Federated learning and blockchain</h3>
+                    <p2>APRIL-JUNE 2022</p2> <br><br>
+                    <p1>
+                      This project aims on creating an alarm for water irrigation by collecting the data using various sensors connected to a raspberry-pi. Blockchain is im plemented here in-order to store the neural network weights corresponding different households at different timesteps.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+
+
+            <li class="project-item  active" data-filter-item data-category="databases">
+              <a href="https://github.com/EswarDivi/MongoStreamify">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/DBMS.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Mongo-Streamify</h3>
+                    <p2>FEBRUARY-MARCH 2022</p2> <br><br>
+                    <p1>
+                      MongoStreamify is a video streaming platform that uses MongoDB as its database and is built using the FastAPI framework and Jinja2 templates. The platform allows users to upload, stream, and watch videos seamlessly, with fast loading times and smooth playback. The use of Docker for deployment ensures easy and efficient scaling of the platform.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+          
+          
+          <li class="project-item  active" data-filter-item data-category="deep learning">
+              <a href="https://drive.google.com/drive/folders/1CWF3fS0Wak4d4HJ-mBVbBEsTVxrWKmxi?usp=sharing">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/DL.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Comparison between mathematical models and deep learning algorithms for rainfall forecasing in kerala</h3>
+                    <p2>JANUARY 2022</p2> <br><br>
+                    <p1>
+                      This project discusses and compares various time series forecasting methods such as DMD, SARIMA, ARIMA, Prophet, LSTM and Least Square Linear Prediction for rainfall prediction in the state of Kerala in India. Moving Window approach is used for rainfall data and the results are compared for all the methods mentioned above.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+
+            <li class="project-item  active" data-filter-item data-category="machine learning">
+              <a href="https://github.com/AkshayaJeyaprakash/Stock_predictions_clustering_algorithms">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/ML.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>DDos attack detection in SDN using SVM</h3>
+                    <p2>JUNE 2021</p2> <br><br>
+                    <p1>
+                      Denial of service attacks are most common in the networks of various service providers. This project aims on simulating a DDos scenario in the MININET framework of ubuntu and detection of the same using the Support Vector Machine algorithms by formulating the same as a classification problem by extracting various features from the environment with the support of WIRESHARKS.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+          
+          
+          <li class="project-item  active" data-filter-item data-category="machine learning">
+              <a href="https://drive.google.com/drive/folders/1q7x0bkzr5PlliO5Fa-P1syLGwtY9RDuQ?usp=sharing">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/ML.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Stock forecasting using regression</h3>
+                    <p2>JUNE 2021</p2> <br><br>
+                    <p1>
+                      Stock prediction aims to predict the future trends of a stock in order to help investors make good investment decisions. Traditional solutions for stock prediction are based on time-series models. This project aims on comparing various time series algorithms and provide a reason for the accuracu of each algorithms based on it's working.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+          
+          
+          <li class="project-item  active" data-filter-item data-category="core math">
+              <a href="https://github.com/AmritaAIE/ILPBIO-CEN/tree/main/RNA%20FOLDING">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/Math.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Formulation of RNA folding as an ILP Problem</h3>
+                    <p2>APRIL 2021</p2> <br><br>
+                    <p1>
+                      The goal of the RNA folding problem is to predict one or more secondary RNA structures as well as the best stable structure from a given basic base sequence. Linear programming where all the base equation and constrains are restricted to integer values is known as integer linear programming. This project aims onf formulating the RNA folding problem as an ILP problem and solve it using the GUROBI optimizer using MATLAB.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+          
+          
+          <li class="project-item  active" data-filter-item data-category="machine learning">
+              <a href="https://github.com/AkshayaJeyaprakash/Stock_predictions_clustering_algorithms">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/ML.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Stock trend prediction using clustering algorithms</h3>
+                    <p2>FEBRUARY 2021</p2> <br><br>
+                    <p1>
+                      Stock prediction aims to predict the future trends of a stock in order to help investors make good investment decisions. Traditional solutions for stock prediction are based on time-series models. This project proposes a peculier solution for predicting if the stock values will be bearish or bullish using the basic clustering machine learning algorithms.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+          
+          
+          <li class="project-item  active" data-filter-item data-category="core dsa">
+              <a href="https://github.com/AkshayaJeyaprakash/Graphical_Representation_of_Epistemic_Embeddings-">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/DSA.svg" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Graphical Representation of Epistemic Embeddings</h3>
+                    <p2>JANUARY 2021</p2> <br><br>
+                    <p1>
+                      This project aims at creating a visualization of Graph Representation of Epistemic Embeddings on Wikipedeic network. Such representations shall aid the user to get a birds eye view of the epistemic connections as well as help technologies like knowledge graphs to build upon it. We shall crawl starting from a given Wikipedia topic, to a defined depth, capturing the relationships between "Wikipedia pages''.            
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+          
+          
+          <li class="project-item  active" data-filter-item data-category="core dsa">
+              <a href="https://github.com/AkshayaJeyaprakash/MerkelTree_Blockchain">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/DSA.svg" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Implementation of Blockchain using Merkle tree</h3>
+                    <p2>NOVEMBER 2020</p2> <br><br>
+                    <p1>
+                      A hash tree, often known as the Merkle tree, efficiently and securely encrypts blockchain data. It facilitates the rapid verification of blockchain data as well as the rapid transfer of enormous volumes of data from one computer node to the next on the peer-to-peer blockchain network. This project is an online deplyment of a blockchain network using merkle tree, the backend written using python.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+          </li>
+                        
+
+            <li class="project-item  active" data-filter-item data-category="deep learning">
+              <a href="https://drive.google.com/drive/folders/14Hpz_a7Jla79zKgbN9sQdvH-yq0pd_kq?usp=sharing">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/DL.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Training of snake game agent using Q-Learning [DQN]</h3>
+                    <p2>OCTOBER 2020</p2> <br><br>
+                    <p1>
+                      Reinforcement learning is a peculeir type of machine learning which does not require any data in order to train, provided we can create a well-defined environment with agent, transition and proper reward-penalty system. This project aims of training a Deep-Q-Neural Network dedicated for the movement of snake in the snake game. Here, the environment of snake game was created using the Pygame library and the neural network was modelled and trained using the PyTorch library.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+            <li class="project-item  active" data-filter-item data-category="core dsa">
+              <a href="https://github.com/AkshayaJeyaprakash/Dijkstra_path_finding_algorithm">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/DSA.svg" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Dijkstra's shortest path finding Algorithm</h3>
+                    <p2>SEPTEMBER 2020</p2> <br><br>
+                    <p1>
+                      Being said that one of the main applications we use everyday, the Google maps use the dijksrta's algorithm for finding the shortest distance between the locations we search for, this project is about making a simple implementation of dijkstra's algorithms in MATLAB.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+            <li class="project-item  active" data-filter-item data-category="core math">
+              <a href="https://github.com/AkshayaJeyaprakash/Binding_energy_minimization">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/Math.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Comparison between steepest descent and non-linear conjugate gradient</h3>
+                    <p2>SEPTEMBER 2022</p2> <br><br>
+                    <p1>
+                      In order to understand and prove the differences in the nature of convergence of the algorithms of steepest descent and non-linear conjugate gradient, both the algorithms were applied for binding energy minimization if different organic molecules. This project proved that the time taken per iteration of non-linear conjugate gate gradient is more than steepest descent, but former converges in less number of iterations than the latter.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+            <li class="project-item  active" data-filter-item data-category="core dsa">
+              <a href="https://drive.google.com/drive/folders/1q1OGmQrx7d41YLGLCB2k9HReFRjQ_CHl?usp=sharing">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/DSA.svg" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Chat messenger in JAVA</h3>
+                    <p2>MARCH 2020</p2> <br><br>
+                    <p1>
+                      A chat-messenger with an architecture similar to google meet was coded in JAVA using the concept of socket programming. A proper fron for the same was developed using the graphics modeule of JAVA. The main motivation behind this project was to understand in depth the concept of sockets and ports.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+            <li class="project-item  active" data-filter-item data-category="core math">
+              <a href="https://drive.google.com/drive/folders/10npglk7PDiKnxIfXoiGgwV73jo3V3bEM?usp=drive_link">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/Math.png" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>Implementation of Pagerank algorithms using Eigen-decomposition</h3>
+                    <p2>FEBRUARY 2020</p2> <br><br>
+                    <p1>
+                      Usually when matrices are multiplied by a vector, there are two tranformations that take place i.e., rotation and scaling, but upon mulitpying by a special vector the matrix just scaled, this vector is known as the eigenvector and the scaling factor is known as the eigenvalue. This eigen decomposition us the base of the famous pagerank algirtihms used by google to index websites based upon their importance.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+            <li class="project-item  active" data-filter-item data-category="core dsa">
+              <a href="https://drive.google.com/drive/folders/1DMxZtF4J0Z-IGcDdKygY-00EkFMIbAXK?usp=sharing">
+                <div class="project">
+                  <figure class="project-img">
+                    <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+                    <img src="IMAGES/DSA.svg" alt="Adder" loading="lazy">
+                  </figure>
+                  <div class="project-details">
+                    <h3>BLOCKCHAIN- Native implementation using MATLAB</h3>
+                    <p2>JANUARY 2020</p2> <br><br>
+                    <p1>
+                      A native implementation of blockchain was made in MATLAB in order learn the structure of object oriented programming in MATLAB and also understand the intricate properties of blockchain and proof-of-work concepts.
+                    </p1>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+          </ul>
+        </section>
+      </article>
+
+
+      <article class="about" data-page="workshops handled">
+
+        <header>
+          <h2 class="h2 article-title">Workshops I have talked in</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            While it is important to learn the curriculum, it is also important to have an idea about other technologies, both new and old. It is not practical to include all such technologies and concepts in the curriculum, but it is beneficial to be aware of them. To support this our deparment organizes wide range of workshops frequently. As a prt of this few selected students are supposed learn the topic specified and explain to peers in an illustrative way to make them understand illustratively. These workshops were conducted in second year of the course. The following are the workshops in which I have actively participated by presenting a portion of the topic.
+          </p>
+        </section>
+
+        <figure class="workshop-img">
+          <img src="IMAGES/cellular_automata.jpg" alt="Adder" loading="lazy">
+        </figure>
+
+        <figure class="workshop-img">
+          <img src="IMAGES/physics_engines.jpg" alt="Adder" loading="lazy">
+        </figure>
+
+        <figure class="workshop-img">
+          <img src="IMAGES/blockchain.jpg" alt="Adder" loading="lazy">
+        </figure>
+
+      </article>
+
+      <!-- #COMPETITIONS -->
+      <article class="about" data-page="competitions">
+
+        <header>
+          <h2 class="h2 article-title">Competitions I won</h2>
+        </header>
+
+        <section class="about-text">
+          <h2>SPRITZON'21</h2>
+          <p>
+            ​SPRITZON'21 was a National level competition which was organized by the IEEE student branch of Bannari Amman Institute of technology. The competition SPRITZON’21 had two rounds. The first round was a quiz competition which was conducted in the google forms platform. We were given around 30 multiple choice questions with one or more than one correct answers, which were related to 9 different technical domains. The questions were not too technical rather were intellectual and involved creative and practical thinking and application of major laws related to the above domains. The major expectation from us in this round was application knowledge. The top 10 scorers of this round made it to the second round which was the final round. In this round we were given some recent topics and we were asked to choose one of those to write a creative article regarding that topic with 200-300 words. The major expectation from us in this round was fluency and creativity.
+          </p>
+        </section>
+        <figure class="comp-img">
+          <img src="IMAGES/SPRIT.png" alt="Adder" loading="lazy">
+        </figure>
+
+        <section class="about-text">
+          <h2>LANA'21</h2>
+          <p>
+            LANA'21 was National Level competition organized by the IEEE students branch of Bannari Amman Institute of Technology. This competition actually mimicked a selection process for software companies. It totally consisted of three rounds. The first round was aptitude, the people who qualify this enter the second round which is coding. The people who qualify first two rounds enter the third round which was one-to-one interview, which consisted of questions that tested both theoretical knowledge and it's application and intellectual skills along with creativity.
+          </p>
+        </section>
+        <figure class="comp-img">
+          <img src="IMAGES/LANA.png" alt="Adder" loading="lazy">
+        </figure>
+
+        <section class="about-text">
+          <h2>MONO ART'21</h2>
+          <p>
+            MONOART'21 was a national level competition conducted by IEEE students branch of Bannari Amman Institute of Technology. The task given in this competition was to creatively make an Art exclusively using the components of a circuit.
+          </p>
+        </section>
+        <figure class="comp-img">
+          <img src="IMAGES/MONO.png" alt="Adder" loading="lazy">
+        </figure>
+        
+
+      </article>
+
+      <!-- #CONTACT -->
+      <article class="contact" data-page="contact">
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="contact-form">
+          <h3 class="h3 form-title">Contact Form</h3>
+          <form action="https://formspree.io/f/mvojwqjo" method="POST" class="form" data-form>
+
+            <div class="input-wrapper">
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+            </div>
+
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+
+          </form>
+        </section>
+
+      </article>
+
+
+    </div>
+
+  </main>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
