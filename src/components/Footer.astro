@@ -1,0 +1,17 @@
+---
+import { profile } from '../data/profile';
+const year = new Date().getFullYear();
+---
+<footer class="foot">
+  <div class="wrap row mono">
+    <span>© {year} {profile.name}</span>
+    <span class="status"><i></i> system nominal · built with Astro</span>
+  </div>
+</footer>
+
+<style>
+  .foot { border-top: 1px solid var(--line); padding-block: 28px; color: var(--muted); font-size: 12px; }
+  .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .status { display: inline-flex; align-items: center; gap: 8px; }
+  i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+</style>

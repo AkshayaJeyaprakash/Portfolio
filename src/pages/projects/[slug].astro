@@ -1,0 +1,128 @@
+---
+import Base from '../../layouts/Base.astro';
+import Media from '../../components/Media.astro';
+import { projects, type Project } from '../../data/projects';
+import { url } from '../../lib/paths';
+
+export function getStaticPaths() {
+  return projects.map((p, i) => ({
+    params: { slug: p.slug },
+    props: { p, next: projects[(i + 1) % projects.length] },
+  }));
+}
+interface Props { p: Project; next: Project }
+const { p, next } = Astro.props;
+const [lead, ...rest] = p.media;
+---
+<Base title={`${p.title} | Akshaya Jeyaprakash`} description={p.tagline}>
+  <article class="cs">
+    <header class="cs-head gridbg">
+      <div class="wrap">
+        <a class="arrow-link" href={url('#work')}>← all work</a>
+        <p class="eyebrow">{p.label} · {p.when}</p>
+        <h1 class="cs-title">{p.title}</h1>
+        <p class="cs-tag">{p.tagline}</p>
+        <dl class="cs-facts mono">
+          <div><dt>context</dt><dd>{p.context}</dd></div>
+          <div><dt>team</dt><dd>{p.team}</dd></div>
+          <div><dt>code</dt><dd><a class="arrow-link" href={p.repo} target="_blank" rel="noopener">GitHub ↗</a></dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <div class="lead-media"><Media item={lead} ratio="auto" /></div>
+
+      <section class="cs-sec">
+        <dl class="metrics">
+          {p.metrics.map((m) => <div><dt>{m.value}</dt><dd class="mono">{m.label}</dd></div>)}
+        </dl>
+      </section>
+
+      <section class="cs-sec two">
+        <h2 class="mono sub">Overview</h2>
+        <p class="body">{p.summary}</p>
+      </section>
+
+      <section class="cs-sec two">
+        <h2 class="mono sub">Pipeline</h2>
+        <ol class="pipeline">
+          {p.pipeline.map((s, i) => (
+            <li class="reveal">
+              <span class="pi-n mono">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{s.step}</h3>
+              <p>{s.detail}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {p.myRole && (
+        <section class="cs-sec two">
+          <h2 class="mono sub">What I built</h2>
+          <ul class="role">{p.myRole.map((r) => <li>{r}</li>)}</ul>
+        </section>
+      )}
+
+      <section class="cs-sec two">
+        <h2 class="mono sub">Stack</h2>
+        <ul class="tags">{p.stack.map((s) => <li class="tag">{s}</li>)}</ul>
+      </section>
+
+      {rest.length > 0 && (
+        <section class="cs-sec">
+          <h2 class="mono sub">Gallery</h2>
+          <div class="gallery">
+            {rest.map((m) => <div class="reveal"><Media item={m} ratio={m.kind === 'image' ? '4 / 3' : '16 / 9'} /></div>)}
+          </div>
+        </section>
+      )}
+
+      <a class="next bbox" href={url(`projects/${next.slug}/`)}>
+        <span class="mono">next project →</span>
+        <span class="next-title">{next.title}</span>
+      </a>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .cs-head { padding: 120px 0 56px; border-bottom: 1px solid var(--line); }
+  .cs-head .eyebrow { display: flex; margin-top: 36px; }
+  .cs-title { font-size: clamp(56px, 11vw, 150px); line-height: .88; letter-spacing: -.05em; margin: 16px 0 0; }
+  .cs-tag { font-size: clamp(18px, 2vw, 24px); color: var(--ink-2); max-width: 40ch; margin: 22px 0 0; }
+  .cs-facts { display: flex; flex-wrap: wrap; gap: 12px 48px; margin: 36px 0 0; font-size: 13px; }
+  .cs-facts dt { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+  .cs-facts dd { margin: 4px 0 0; color: var(--ink-2); }
+
+  .lead-media { margin-top: 48px; }
+  .cs-sec { padding: 48px 0; border-bottom: 1px solid var(--line); }
+  .cs-sec.two { display: grid; grid-template-columns: 220px 1fr; gap: 24px; }
+  .sub { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; font-weight: 500; }
+  .body { font-size: 19px; color: var(--ink-2); margin: 0; max-width: 64ch; }
+
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 0; }
+  .metrics div { background: var(--bg); padding: 24px; }
+  .metrics dt { font-size: clamp(30px, 4vw, 48px); font-weight: 600; color: var(--accent); letter-spacing: -.03em; line-height: 1; }
+  .metrics dd { margin: 10px 0 0; font-size: 12.5px; color: var(--muted); }
+
+  .pipeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .pipeline li { background: var(--bg); padding: 20px; position: relative; }
+  .pi-n { color: var(--accent); font-size: 12px; }
+  .pipeline h3 { margin: 8px 0 6px; font-size: 20px; letter-spacing: -.02em; }
+  .pipeline p { margin: 0; color: var(--ink-2); font-size: 15px; }
+
+  .role { margin: 0; padding-left: 18px; display: grid; gap: 10px; color: var(--ink-2); font-size: 17px; }
+  .role li::marker { content: '▸  '; color: var(--accent); }
+
+  .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+
+  .next { display: grid; gap: 6px; padding: 56px 0 96px; text-decoration: none; --box: var(--accent); }
+  .next .mono { color: var(--accent); font-size: 13px; }
+  .next-title { font-size: clamp(40px, 7vw, 96px); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+
+  @media (max-width: 800px) {
+    .cs-sec.two { grid-template-columns: 1fr; gap: 0; }
+    .gallery { grid-template-columns: 1fr; }
+  }
+</style>

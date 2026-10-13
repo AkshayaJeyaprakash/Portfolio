@@ -1,0 +1,278 @@
+---
+import { profile } from '../data/profile';
+import { url, publicExists } from '../lib/paths';
+
+const hasResume = publicExists(profile.resume);
+
+const commands = [
+  { text: 'find robotics projects', href: '#work' },
+  { text: 'show production agent work', href: '#experience' },
+  { text: 'list publications', href: '#research' },
+  { text: 'contact akshaya', href: '#contact' },
+];
+---
+<section class="hero gridbg" id="top" data-hero>
+  <div class="scan" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="hud-top wrap mono" aria-hidden="true">
+    <span><b class="rec"></b> REC <span data-clock>00:00:00</span></span>
+    <span class="hide-sm">/akshaya/camera/rgb</span>
+    <span class="hide-sm">1920×1080</span>
+    <span><span data-fps>60.0</span> FPS</span>
+  </div>
+
+  <div class="wrap grid">
+    <div class="copy">
+      <p class="eyebrow">{profile.status}</p>
+      <h1 class="name">
+        <span data-detect="person" data-conf="0.98">{profile.name.split(' ')[0]}<br />{profile.name.split(' ').slice(1).join(' ')}</span>
+      </h1>
+      <p class="roles">
+        <span data-detect="ai_engineer" data-conf="0.97" data-color="cyan">AI engineer</span>
+        <span class="plus">+</span>
+        <span data-detect="roboticist" data-conf="0.95" data-color="cyan">roboticist</span>
+      </p>
+      <p class="headline">{profile.headline}</p>
+      <div class="ctas">
+        <a class="btn solid" href="#work">View robotics work ↓</a>
+        {hasResume && <a class="btn ghost" href={url(profile.resume)} download>Résumé ↗</a>}
+        <a class="btn ghost" href={profile.links.github} target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn ghost" href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+
+    <div class="subject">
+      <div class="photo" data-detect="akshaya" data-conf="0.99" data-color="pink">
+        <img src={url(profile.photo)} alt={`Portrait of ${profile.name}`} />
+      </div>
+      <dl class="telemetry mono">
+        <div><dt>loc</dt><dd>{profile.location}</dd></div>
+        <div><dt>stack</dt><dd>ROS 2 · PyTorch · LLM agents</dd></div>
+        <div><dt>depth</dt><dd data-depth>0.45 m</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="cmd mono">
+      <div class="cmd-line" aria-hidden="true"><span class="prompt">atom@portfolio:~$</span> <span data-typed></span><span class="caret"></span></div>
+      <ul class="chips" aria-label="Jump to">
+        {commands.map((c) => <li><a href={c.href}>{c.text}</a></li>)}
+      </ul>
+    </div>
+  </div>
+
+  <div class="overlay" aria-hidden="true" data-overlay></div>
+</section>
+
+<script define:vars={{ commandTexts: commands.map((c) => c.text) }}>
+  const hero = document.querySelector('[data-hero]');
+  const overlay = hero.querySelector('[data-overlay]');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const colors = { accent: 'var(--accent)', cyan: 'var(--cyan)', pink: 'var(--pink)' };
+
+  // --- Detection boxes for every [data-detect] element ---
+  const targets = [...hero.querySelectorAll('[data-detect]')].map((el, i) => {
+    const box = document.createElement('div');
+    box.className = 'det';
+    box.style.setProperty('--box', colors[el.dataset.color || 'accent']);
+    box.innerHTML = `<span class="label det-label"></span>`;
+    overlay.appendChild(box);
+    return { el, box, label: box.firstChild, name: el.dataset.detect, base: +el.dataset.conf, conf: +el.dataset.conf, delay: 250 + i * 220, seed: Math.random() * 100 };
+  });
+
+  // --- Cursor tracker ---
+  const cur = document.createElement('div');
+  cur.className = 'det cursor';
+  cur.style.setProperty('--box', 'var(--cyan)');
+  cur.innerHTML = `<span class="label det-label">cursor</span><span class="xy mono"></span>`;
+  const hLine = Object.assign(document.createElement('div'), { className: 'xline h' });
+  const vLine = Object.assign(document.createElement('div'), { className: 'xline v' });
+  overlay.append(hLine, vLine, cur);
+  const curLabel = cur.querySelector('.det-label');
+  const curXY = cur.querySelector('.xy');
+
+  let mouse = null;            // real pointer, if any
+  const pos = { x: 0, y: 0 };  // smoothed tracker position
+  hero.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    const r = hero.getBoundingClientRect();
+    mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+  });
+  hero.addEventListener('pointerleave', () => { mouse = null; });
+
+  const start = performance.now();
+  let last = start, fpsAvg = 60, confTick = 0;
+  const fpsEl = hero.querySelector('[data-fps]');
+  const clockEl = hero.querySelector('[data-clock]');
+  const depthEl = hero.querySelector('[data-depth]');
+
+  let heroVisible = true;
+  new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; }).observe(hero);
+
+  function frame(now) {
+    const dt = now - last; last = now;
+    if (!heroVisible) { requestAnimationFrame(frame); return; }
+    fpsAvg += ((1000 / Math.max(dt, 1)) - fpsAvg) * 0.05;
+    const t = (now - start) / 1000;
+    const hr = hero.getBoundingClientRect();
+    const updateConf = now - confTick > 350;
+    if (updateConf) confTick = now;
+
+    // tracker target: pointer if present, otherwise an idle Lissajous "scan"
+    const goal = mouse || {
+      x: hr.width * (0.5 + 0.32 * Math.sin(t * 0.35)),
+      y: hr.height * (0.55 + 0.22 * Math.sin(t * 0.53 + 1)),
+    };
+    const k = reduce ? 1 : (mouse ? 0.18 : 0.04);
+    pos.x += (goal.x - pos.x) * k;
+    pos.y += (goal.y - pos.y) * k;
+
+    let locked = null;
+    for (const tg of targets) {
+      const r = tg.el.getBoundingClientRect();
+      const visible = now - start > tg.delay || reduce;
+      const j = reduce ? 0 : 1.6;
+      const jx = Math.sin(t * 7 + tg.seed) * j, jy = Math.cos(t * 6 + tg.seed) * j;
+      const pad = 10;
+      const x = r.left - hr.left - pad + jx, y = r.top - hr.top - pad + jy;
+      const w = r.width + pad * 2, h = r.height + pad * 2;
+      tg.box.style.transform = `translate(${x}px, ${y}px)`;
+      tg.box.style.width = `${w}px`;
+      tg.box.style.height = `${h}px`;
+      tg.box.classList.toggle('on', visible);
+      const inside = mouse && pos.x > x && pos.x < x + w && pos.y > y && pos.y < y + h;
+      tg.box.classList.toggle('locked', !!inside);
+      if (inside) locked = tg;
+      if (updateConf && !reduce) tg.conf = Math.min(0.99, tg.base + (Math.random() - 0.5) * 0.03);
+      tg.label.textContent = `${tg.name} ${tg.conf.toFixed(2)}${inside ? ' · LOCKED' : ''}`;
+    }
+
+    const s = locked ? 56 : 84;
+    cur.style.transform = `translate(${pos.x - s / 2}px, ${pos.y - s / 2}px)`;
+    cur.style.width = cur.style.height = `${s}px`;
+    cur.classList.add('on');
+    curLabel.textContent = locked ? `target → ${locked.name}` : (mouse ? 'cursor 0.93' : 'scanning…');
+    curXY.textContent = `x ${Math.round(pos.x)}  y ${Math.round(pos.y)}`;
+    hLine.style.transform = `translateY(${pos.y}px)`;
+    vLine.style.transform = `translateX(${pos.x}px)`;
+
+    if (updateConf) {
+      fpsEl.textContent = Math.min(fpsAvg, 144).toFixed(1);
+      const secs = Math.floor(t);
+      clockEl.textContent = [secs / 3600, (secs % 3600) / 60, secs % 60].map((n) => String(Math.floor(n)).padStart(2, '0')).join(':');
+      depthEl.textContent = `${(0.45 + Math.abs(Math.sin(t * 0.4)) * 1.05).toFixed(2)} m`;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // --- Command line typing loop ---
+  const typed = hero.querySelector('[data-typed]');
+  if (reduce) { typed.textContent = commandTexts[0]; }
+  else {
+    let ci = 0, ch = 0, deleting = false;
+    (function type() {
+      const full = commandTexts[ci];
+      ch += deleting ? -1 : 1;
+      typed.textContent = full.slice(0, ch);
+      let wait = deleting ? 28 : 55 + Math.random() * 60;
+      if (!deleting && ch === full.length) { deleting = true; wait = 1800; }
+      else if (deleting && ch === 0) { deleting = false; ci = (ci + 1) % commandTexts.length; wait = 400; }
+      setTimeout(type, wait);
+    })();
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    padding-top: 76px;
+    padding-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    isolation: isolate;
+    cursor: crosshair;
+  }
+  .scan {
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgb(255 255 255 / .018) 0 1px, transparent 1px 4px);
+  }
+  .vignette {
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(120% 90% at 60% 40%, transparent 30%, var(--bg) 85%);
+  }
+  .hud-top { display: flex; justify-content: space-between; gap: 12px; font-size: 11px; color: var(--muted); letter-spacing: .08em; }
+  .rec { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ff3b3b; margin-right: 4px; animation: blink 1.2s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    align-items: center;
+    gap: clamp(32px, 6vw, 96px);
+    padding-block: clamp(28px, 5vh, 64px);
+  }
+  .name {
+    font-size: clamp(52px, 10.5vw, 148px);
+    line-height: .86;
+    letter-spacing: -.055em;
+    font-weight: 700;
+    margin: 22px 0 0;
+  }
+  .name span { display: inline-block; }
+  .roles { font-size: clamp(22px, 3vw, 36px); font-weight: 500; letter-spacing: -.02em; margin: 34px 0 0; display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
+  .roles span[data-detect] { display: inline-block; }
+  .plus { color: var(--muted); }
+  .headline { color: var(--ink-2); font-size: clamp(16px, 1.5vw, 19px); max-width: 48ch; margin: 30px 0 0; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+
+  .subject { display: grid; gap: 18px; justify-items: center; }
+  .photo { position: relative; width: min(100%, 340px); }
+  .photo img { width: 100%; height: auto; }
+  .telemetry { width: min(100%, 380px); margin: 0; font-size: 12px; display: grid; gap: 6px; }
+  .telemetry div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--line-2); padding-bottom: 6px; }
+  dt { color: var(--muted); } dd { margin: 0; color: var(--ink-2); text-align: right; }
+
+  .cmd { border: 1px solid var(--line-2); background: rgb(13 15 18 / .85); padding: 14px 16px; display: grid; gap: 12px; }
+  .cmd-line { font-size: 14px; color: var(--ink); min-height: 1.4em; }
+  .prompt { color: var(--accent); }
+  .caret { display: inline-block; width: 8px; height: 1.05em; background: var(--accent); vertical-align: text-bottom; margin-left: 2px; animation: blink 1s steps(2) infinite; }
+  .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips a { display: inline-block; font-size: 12px; text-decoration: none; color: var(--ink-2); border: 1px solid var(--line-2); padding: 6px 10px; transition: border-color .2s, color .2s; }
+  .chips a::before { content: '> '; color: var(--accent); }
+  .chips a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Overlay boxes are created by script, so styles must be global */
+  .overlay { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+  :global(.det) {
+    position: absolute; left: 0; top: 0;
+    border: 1.5px solid var(--box);
+    opacity: 0;
+    transition: opacity .25s, border-width .15s;
+    will-change: transform, width, height;
+  }
+  :global(.det.on) { opacity: 1; animation: det-in .35s ease-out; }
+  @keyframes det-in { from { clip-path: inset(0 100% 100% 0); } to { clip-path: inset(0 0 0 0); } }
+  :global(.det.locked) { border-width: 3px; box-shadow: 0 0 0 4px color-mix(in srgb, var(--box) 18%, transparent); }
+  :global(.det .det-label) { position: absolute; left: -1.5px; bottom: 100%; background: var(--box); }
+  :global(.det.cursor) { border-style: dashed; transition: width .15s, height .15s, opacity .25s; }
+  :global(.det.cursor .det-label) { color: var(--accent-ink); }
+  :global(.det .xy) { position: absolute; left: 0; top: calc(100% + 4px); font-size: 10px; color: var(--cyan); white-space: nowrap; }
+  :global(.xline) { position: absolute; background: var(--cyan); opacity: .14; }
+  :global(.xline.h) { left: 0; right: 0; top: 0; height: 1px; }
+  :global(.xline.v) { top: 0; bottom: 0; left: 0; width: 1px; }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+    .subject { order: -1; justify-items: start; }
+    .photo { width: min(62vw, 260px); }
+    .telemetry { display: none; }
+    .hide-sm { display: none; }
+  }
+  @media (hover: none) { .hero { cursor: auto; } }
+</style>
